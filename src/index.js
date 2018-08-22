@@ -27,7 +27,7 @@ const removeChildren = function(target) {
   }
 };
 
-searchBar.oninput = e => {
+const inputHandler = debounce(e => {
   removeChildren(results);
 
   if (e.target.value === "") {
@@ -40,4 +40,18 @@ searchBar.oninput = e => {
       })
       .catch(err => console.error(err));
   }
-};
+}, 500);
+
+searchBar.oninput = inputHandler;
+
+// to perform less fetching, lets debounce
+function debounce(fn, time) {
+  let timeoutId = null;
+  // returns a debounced version of given fn
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      fn.apply(this, args);
+    }, time);
+  };
+}
