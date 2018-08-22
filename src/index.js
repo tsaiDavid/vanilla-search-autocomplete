@@ -1,3 +1,5 @@
+import { searchData as search } from "./mockSearch";
+
 document.getElementById("app").innerHTML = `
 <h1>Hello Parcel!</h1>
 <div>
