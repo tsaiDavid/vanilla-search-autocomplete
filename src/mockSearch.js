@@ -5,7 +5,7 @@ export const searchData = searchText => {
     // Simulating uncertain network conditions
     setTimeout(() => {
       resolve(topMovies.filter(m => m.title.match(regex)));
-    }, Math.random() * 1000)
+    }, Math.random() * 500)
   );
 };
 

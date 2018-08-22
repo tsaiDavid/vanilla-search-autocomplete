@@ -21,8 +21,20 @@ const renderList = function(movies, target) {
   }
 };
 
+const removeChildren = function(target) {
+  while (target.firstChild) {
+    target.removeChild(target.firstChild);
+  }
+};
+
 searchBar.oninput = e => {
-  search(e.target.value)
-    .then(res => renderList(res))
-    .catch(err => console.error(err));
+  removeChildren(results);
+
+  if (e.target.value === "") {
+    return;
+  } else {
+    search(e.target.value)
+      .then(res => renderList(res))
+      .catch(err => console.error(err));
+  }
 };
