@@ -34,7 +34,10 @@ searchBar.oninput = e => {
     return;
   } else {
     search(e.target.value)
-      .then(res => renderList(res))
+      .then(res => {
+        removeChildren(results);
+        renderList(res);
+      })
       .catch(err => console.error(err));
   }
 };
